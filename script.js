@@ -9,7 +9,7 @@ function operate(operator) {
         result = displayValue*storedValue;
         return result;
     } else if (operator=='/') {
-        result = displayValue/storedValue;
+        result = storedValue/displayValue;
         return result;
     }
 }
@@ -233,13 +233,40 @@ subtractButton.addEventListener('click', (event) => {
     }
   });
 multiplyButton.addEventListener('click', (event) => {
-    console.log('X');
+    operator = '*';
+    if (clearedStatus == false && storedValue != 0) {
+        storedValue = storedValue*displayValue
+        displayValue = 0
+        display.textContent = storedValue;
+    } else {
+        storedValue = displayValue;
+        displayValue = 0;
+    }
   });
 divideButton.addEventListener('click', (event) => {
-    console.log('%');
+    operator = '/';
+    if (clearedStatus == false && storedValue != 0) {
+        storedValue = storedValue / displayValue;
+        displayValue = 0;
+        display.textContent = storedValue;
+    } else if (clearedStatus == false && storedValue == 0) {
+        display.textContent = displayValue;
+        storedValue = displayValue;
+        displayValue = 0;
+        } else {
+        storedValue = displayValue;
+        displayValue = 0;
+    }
   });
 equalButton.addEventListener('click', (event) => {
     let computedValue = operate(operator);
-    display.textContent = computedValue;
+    display.textContent = " ";
+    var delayInMilliseconds = 100;
+
+    setTimeout(function() {
+        display.textContent = computedValue;
+    }, delayInMilliseconds);
+    
   });
 
+ 
