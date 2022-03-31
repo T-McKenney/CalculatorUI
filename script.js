@@ -1,24 +1,27 @@
-function operate(operator,x,y) {
+function operate(operator) {
     if (operator=='+') {
-        result = x+y;
+        result = (displayValue)+(storedValue);
         return result;
     } else if (operator=='-') {
-        result = x-y;
+        result = storedValue-displayValue;
         return result;
     } else if (operator=='*') {
-        result = x*y;
+        result = displayValue*storedValue;
         return result;
     } else if (operator=='/') {
-        result = x/y;
+        result = displayValue/storedValue;
         return result;
     }
 }
+
+let displayValue = 0;
+let storedValue = 0;
 
 const container = document.getElementById('container');
 let display = document.createElement('div');
 
 display.className = "calcDisplay"
-display.textContent = '123456789'
+display.textContent = displayValue;
 container.appendChild(display);
 let numRows = 4
 let numCells = 4
@@ -54,7 +57,8 @@ for (i=0;i<numRows;i++) {
 }
 
 
-let currentValue = 0;
+
+let clearedStatus = true;
 let clearButton = document.querySelector('#buttonAC');
 let zeroButton = document.querySelector('#button0');
 let oneButton = document.querySelector('#button1');
@@ -72,44 +76,161 @@ let multiplyButton = document.querySelector('#buttonX');
 let divideButton = document.querySelector('#button\\%');
 let equalButton = document.querySelector('#button\\=');
 
-clearButton.addEventListener('click', (event) => {
-    console.log('All Clear!');
-  });
+
+
 zeroButton.addEventListener('click', (event) => {
-    console.log('0');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}0`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 0;
+            display.textContent = displayValue;
+        }
+    }
   });
 oneButton.addEventListener('click', (event) => {
-    console.log('1');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}1`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 1;
+            display.textContent = displayValue;
+            clearedStatus = false;
+        }
+    }
+    
   });
 twoButton.addEventListener('click', (event) => {
-    console.log('2');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}2`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 2;
+            display.textContent = displayValue;
+            clearedStatus = false;
+        }
+    }
   });
 threeButton.addEventListener('click', (event) => {
-    console.log('3');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}3`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 3;
+            display.textContent = displayValue;
+            clearedStatus = false;
+        }
+    }
   });
 fourButton.addEventListener('click', (event) => {
-    console.log('4');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}4`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 4;
+            display.textContent = displayValue;
+            clearedStatus = false;
+        }
+    };
   });
 fiveButton.addEventListener('click', (event) => {
-    console.log('5');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}5`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 5;
+            display.textContent = displayValue;
+            clearedStatus = false;
+        }
+    }
   });
 sixButton.addEventListener('click', (event) => {
-    console.log('6');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}6`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 6;
+            display.textContent = displayValue;
+            clearedStatus = false;
+        }
+    }
   });
 sevenButton.addEventListener('click', (event) => {
-    console.log('7');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}7`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 7;
+            display.textContent = displayValue;
+            clearedStatus = false;
+        }
+    }
   });
 eightButton.addEventListener('click', (event) => {
-    console.log('8');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}8`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 8;
+            display.textContent = displayValue;
+            clearedStatus = false;
+        }
+    }
   });
 nineButton.addEventListener('click', (event) => {
-    console.log('9');
+    if (displayValue.toString().length < 9) {
+        if (clearedStatus == false) {
+            displayValue = parseInt(`${displayValue}9`);
+            display.textContent = displayValue;
+        } else {
+            displayValue = 9;
+            display.textContent = displayValue;
+            clearedStatus = false;
+        }
+    };
   });
+
+clearButton.addEventListener('click', (event) => {
+        displayValue = 0;
+        storedValue = 0;
+        clearedStatus = true;
+        display.textContent = displayValue;
+  });
+
 addButton.addEventListener('click', (event) => {
-    console.log('+');
+    operator = '+';
+    if (clearedStatus == false) {
+        storedValue = storedValue+displayValue
+        displayValue = 0
+        display.textContent = storedValue;
+    } else {
+        storedValue = displayValue;
+        displayValue = 0;
+    }
   });
 subtractButton.addEventListener('click', (event) => {
-    console.log('-');
+    operator = '-';
+    if (clearedStatus == false && storedValue != 0) {
+        storedValue = storedValue - displayValue;
+        displayValue = 0;
+        display.textContent = storedValue;
+    } else if (clearedStatus == false && storedValue == 0) {
+        display.textContent = displayValue;
+        storedValue = -1*displayValue;
+        displayValue = 0;
+        } else {
+        storedValue = displayValue;
+        displayValue = 0;
+    }
   });
 multiplyButton.addEventListener('click', (event) => {
     console.log('X');
@@ -118,6 +239,7 @@ divideButton.addEventListener('click', (event) => {
     console.log('%');
   });
 equalButton.addEventListener('click', (event) => {
-    console.log('=');
+    let computedValue = operate(operator);
+    display.textContent = computedValue;
   });
 
